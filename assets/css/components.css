@@ -119,6 +119,105 @@ button:hover,
   color: #502c0f;
 }
 
+.btn-secondary {
+  background: var(--color-white);
+  color: var(--color-primary);
+}
+
+.btn-secondary:hover {
+  background: var(--color-surface);
+}
+
+.filter-btn {
+  background: var(--color-white);
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  padding: 0.45rem 0.85rem;
+}
+
+.filter-btn.is-active {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
+  box-shadow: 0 4px 14px rgba(64, 45, 17, 0.06);
+  transition:
+    transform 200ms ease-out,
+    box-shadow 200ms ease-out;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(64, 45, 17, 0.12);
+}
+
+.project-card__body h3 {
+  margin: var(--space-2) 0;
+  color: var(--color-primary);
+}
+
+.project-card__body p {
+  color: var(--color-text);
+  margin: 0 0 var(--space-4);
+}
+
+.project-card__tag {
+  display: inline-block;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.project-tags li {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-primary);
+  border-radius: 999px;
+  padding: 0.35rem 0.7rem;
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.project-card__actions {
+  display: flex;
+  gap: var(--space-2);
+  margin-top: var(--space-5);
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-card__actions {
+    flex-direction: column;
+  }
+
+  .project-card__actions .btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
 @media (max-width: 768px) {
   .nav-links {
     gap: var(--space-2);

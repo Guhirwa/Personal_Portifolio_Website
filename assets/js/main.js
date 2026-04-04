@@ -9,6 +9,7 @@
       hero: window.renderHero,
       about: window.renderAbout,
       skills: window.renderSkills,
+      projects: window.renderProjects,
       experience: window.renderExperience,
       contact: window.renderContact,
     };
@@ -16,9 +17,26 @@
     document.querySelectorAll("[data-render]").forEach(function (section) {
       const renderType = section.getAttribute("data-render");
       if (renderMap[renderType]) {
-        renderMap[renderType](section);
+        if (renderType === "projects") {
+          renderMap[renderType](section, "all");
+        } else {
+          renderMap[renderType](section);
+        }
       }
     });
+
+    const projectsSection = document.querySelector('[data-render="projects"]');
+    if (projectsSection) {
+      projectsSection.addEventListener("click", function (event) {
+        const button = event.target.closest("[data-filter]");
+        if (!button) {
+          return;
+        }
+
+        const nextFilter = button.getAttribute("data-filter");
+        window.renderProjects(projectsSection, nextFilter);
+      });
+    }
   }
 
   if (document.readyState === "loading") {

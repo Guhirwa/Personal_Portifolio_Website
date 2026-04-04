@@ -72,3 +72,72 @@ window.renderContact = function renderContact(container) {
     </div>
   `;
 };
+
+window.getProjectFilters = function getProjectFilters() {
+  const projects = window.PORTFOLIO_DATA.projects || [];
+  const categories = new Set(["all"]);
+
+  projects.forEach(function (project) {
+    if (project.category) {
+      categories.add(project.category);
+    }
+  });
+
+  return Array.from(categories);
+};
+
+window.renderProjects = function renderProjects(container, activeFilter) {
+  const projects = window.PORTFOLIO_DATA.projects || [];
+  const filterValue = activeFilter || "all";
+  const filteredProjects = projects.filter(function (project) {
+    return filterValue === "all" || project.category === filterValue;
+  });
+
+  const filterButtons = window
+    .getProjectFilters()
+    .map(function (filter) {
+      const isActive = filter === filterValue;
+      return `
+        <button class="filter-btn${isActive ? " is-active" : ""}" type="button" data-filter="${filter}">
+          ${filter === "all" ? "All Projects" : filter.toUpperCase()}
+        </button>
+      `;
+    })
+    .join("");
+
+  const projectCards = filteredProjects
+    .map(function (project) {
+      return `
+        <article class="project-card">
+          <div class="project-card__body">
+            <span class="project-card__tag">${project.role}</span>
+            <h3>${project.title}</h3>
+            <p>${project.description}</p>
+            <ul class="project-tags">
+              ${project.technology
+                .map(function (tech) {
+                  return `<li>${tech}</li>`;
+                })
+                .join("")}
+            </ul>
+          </div>
+          <div class="project-card__actions">
+            <a class="btn" href="${project.liveLink}">Live Site</a>
+            <a class="btn btn-secondary" href="${project.githubLink}">GitHub</a>
+          </div>
+        </article>
+      `;
+    })
+    .join("");
+
+  container.innerHTML = `
+    <div class="container content-block">
+      <h2>Projects Showcase</h2>
+      <p>Selected work across web interfaces, tooling ideas, and responsive UI concepts.</p>
+      <div class="filter-row" data-project-filters>${filterButtons}</div>
+      <div class="projects-grid" data-project-grid>
+        ${projectCards || '<p class="empty-state">No projects found for this filter.</p>'}
+      </div>
+    </div>
+  `;
+};
