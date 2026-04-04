@@ -7,6 +7,7 @@
   font-weight: 700;
   color: var(--color-primary);
   padding: var(--space-4) 0;
+  font-size: 1.25rem;
 }
 
 button,
@@ -17,17 +18,44 @@ button,
   padding: 0.5rem 0.875rem;
   border-radius: var(--radius-sm);
   cursor: pointer;
+  transition: all 200ms ease-out;
+  font-weight: 500;
+}
+
+button:hover,
+.btn:hover {
+  background: #502c0f;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(64, 45, 17, 0.2);
 }
 
 .site-footer {
   border-top: 1px solid var(--color-border);
   padding: var(--space-5) 0;
   color: var(--color-text-muted);
+  text-align: center;
+}
+
+.hero-section {
+  text-align: center;
+}
+
+.hero-section h1 {
+  font-size: 2rem;
+  margin: 0 0 var(--space-3) 0;
+  color: var(--color-primary);
+}
+
+.hero-section > p {
+  font-size: 1.1rem;
+  margin: 0 0 var(--space-3) 0;
+  color: var(--color-text);
 }
 
 .hero-meta {
   color: var(--color-text-muted);
   margin-bottom: var(--space-4);
+  font-size: 0.95rem;
 }
 
 .content-block {
@@ -35,24 +63,81 @@ button,
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   padding: var(--space-5);
+  transition: box-shadow 200ms ease-out;
+}
+
+.content-block:hover {
+  box-shadow: 0 4px 12px rgba(64, 45, 17, 0.1);
 }
 
 .content-block h2 {
   margin-top: 0;
+  margin-bottom: var(--space-4);
   color: var(--color-primary);
+  font-size: 1.5rem;
 }
 
-.list-grid {
+.content-block h3 {
+  margin-top: var(--space-4);
+  margin-bottom: var(--space-2);
+  color: var(--color-primary);
+  font-size: 1.1rem;
+}
+
+.skills-grid {
   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: var(--space-5);
 }
 
 .content-block ul {
   margin: 0;
   padding-left: 1.2rem;
+  list-style-position: outside;
+}
+
+.content-block li {
+  margin-bottom: var(--space-2);
+  color: var(--color-text);
+  line-height: 1.6;
 }
 
 .content-block p,
-.content-block li {
+.content-block a {
   color: var(--color-text);
+  line-height: 1.7;
+}
+
+.content-block a {
+  color: var(--color-primary);
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-primary);
+  transition: color 200ms ease-out;
+}
+
+.content-block a:hover {
+  color: #502c0f;
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    gap: var(--space-2);
+    font-size: 0.9rem;
+  }
+
+  .hero-section h1 {
+    font-size: 1.5rem;
+  }
+
+  .hero-section > p {
+    font-size: 1rem;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .content-block {
+    padding: var(--space-4);
+  }
 }
