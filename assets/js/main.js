@@ -39,9 +39,38 @@
     }
   }
 
+  function renderBlogPage() {
+    const blogContainer = document.querySelector('[data-render="blog-list"]');
+    if (blogContainer && window.renderBlogList) {
+      window.renderBlogList(blogContainer, "all");
+
+      blogContainer.addEventListener("click", function (event) {
+        const button = event.target.closest("[data-filter]");
+        if (!button) {
+          return;
+        }
+
+        window.renderBlogList(
+          blogContainer,
+          button.getAttribute("data-filter"),
+        );
+      });
+    }
+
+    const postContainer = document.querySelector('[data-render="blog-post"]');
+    if (postContainer && window.renderBlogPost) {
+      const params = new URLSearchParams(window.location.search);
+      window.renderBlogPost(postContainer, params.get("post"));
+    }
+  }
+
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", renderSections);
+    document.addEventListener("DOMContentLoaded", function () {
+      renderSections();
+      renderBlogPage();
+    });
   } else {
     renderSections();
+    renderBlogPage();
   }
 })();

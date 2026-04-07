@@ -37,6 +37,62 @@ window.PORTFOLIO_DATA = {
     "IT Support and Customer Care Assistant, Gihundwe Sector (Dec 2022 - Sept 2023)",
     "BSc Software Engineering, AUCA (Sept 2023 - Present, GPA: 3.4)",
   ],
-  projects: [],
-  blogPosts: [],
+  projects: [
+    {
+      id: "portfolio-site",
+      title: "Portfolio Website",
+      description:
+        "A responsive personal portfolio built with semantic HTML, modular CSS, and JavaScript-driven rendering.",
+      category: "web",
+      technologies: ["HTML", "CSS", "JavaScript"],
+      role: "Frontend Developer",
+      liveLink: "#",
+      githubLink: "#",
+    },
+  ],
+  blogPosts: [
+    {
+      id: "building-clean-layouts",
+      title: "Building Clean Layouts for Small Projects",
+      excerpt:
+        "A practical note on keeping personal project layouts simple, readable, and easy to maintain.",
+      category: "design",
+      date: "2026-04-05",
+      content: [
+        "Start with semantic structure before adding visual polish.",
+        "Use spacing, headings, and contrast to guide the reader.",
+        "Keep components reusable so future sections stay consistent.",
+      ],
+      codeSnippet: '<section class="content-block">...</section>',
+    },
+    {
+      id: "data-driven-ui",
+      title: "Why I Moved to a Data-Driven UI",
+      excerpt:
+        "A short reflection on keeping content in one place and rendering it through JavaScript.",
+      category: "development",
+      date: "2026-04-06",
+      content: [
+        "One source of truth avoids duplication and reduces mistakes.",
+        "Render functions make it easier to update entire sections later.",
+        "The pattern works well for portfolio sites and small dashboards.",
+      ],
+      codeSnippet: "window.renderProjects(container, 'all');",
+    },
+    {
+      id: "responsive-first",
+      title: "Thinking Mobile-First for Portfolio Pages",
+      excerpt:
+        "A short guide to designing mobile-first layouts before moving to larger screens.",
+      category: "css",
+      date: "2026-04-07",
+      content: [
+        "Use flexible grids and avoid fixed widths.",
+        "Test buttons, cards, and sections on smaller screens early.",
+        "Add enhancements for larger screens after the mobile layout works well.",
+      ],
+      codeSnippet:
+        "grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));",
+    },
+  ],
 };
