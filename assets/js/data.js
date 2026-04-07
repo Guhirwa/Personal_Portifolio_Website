@@ -7,6 +7,18 @@ window.PORTFOLIO_DATA = {
     phone: "+250 790 714 202",
     email: "guhirwachristian004@gmail.com",
   },
+  contact: {
+    socialLinks: [
+      {
+        label: "LinkedIn",
+        url: "www.linkedin.com/in/christian-guhirwa1226",
+      },
+      {
+        label: "GitHub",
+        url: "https://github.com/Guhirwa",
+      },
+    ],
+  },
   about: {
     intro:
       "Passionate Software Engineering student with strong technical expertise in web and software development, plus hands-on experience in IT support, teamwork, and training facilitation.",

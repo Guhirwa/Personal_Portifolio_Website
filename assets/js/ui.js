@@ -71,13 +71,57 @@ window.renderContact = function renderContact(container) {
   container.innerHTML = `
     <div class="container content-block">
       <h2>Contact</h2>
-      <p>Email: <a href="mailto:${data.profile.email}">${data.profile.email}</a></p>
-      <p>Phone: <a href="tel:${data.profile.phone.replace(/\s/g, "")}">${data.profile.phone}</a></p>
-      <p>Address: ${data.profile.address}</p>
-      <p>LinkedIn: <a href="#">View My Profile</a></p>
-      <p>GitHub: <a href="#">View My Profile</a></p>
+      <div class="contact-grid">
+        <div class="contact-details">
+          <p>Email: <a href="mailto:${data.profile.email}">${data.profile.email}</a></p>
+          <p>Phone: <a href="tel:${data.profile.phone.replace(/\s/g, "")}">${data.profile.phone}</a></p>
+          <p>Address: ${data.profile.address}</p>
+          <div class="social-links">
+            ${data.contact.socialLinks
+              .map(function (link) {
+                return `<a class="social-link" href="${link.url}">${link.label}</a>`;
+              })
+              .join("")}
+          </div>
+        </div>
+        <form class="contact-form" data-contact-form>
+          <div class="form-field">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" placeholder="Your name" />
+          </div>
+          <div class="form-field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="you@example.com" />
+          </div>
+          <div class="form-field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" placeholder="Write your message here"></textarea>
+          </div>
+          <button class="btn" type="submit">Send Message</button>
+          <p class="form-message" data-form-message aria-live="polite"></p>
+        </form>
+      </div>
     </div>
   `;
+};
+
+window.validateContactForm = function validateContactForm(values) {
+  const errors = {};
+
+  if (!values.name || values.name.trim().length < 2) {
+    errors.name = "Please enter at least 2 characters.";
+  }
+
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailPattern.test(values.email || "")) {
+    errors.email = "Please enter a valid email address.";
+  }
+
+  if (!values.message || values.message.trim().length < 10) {
+    errors.message = "Please enter at least 10 characters.";
+  }
+
+  return errors;
 };
 
 window.getProjectFilters = function getProjectFilters() {

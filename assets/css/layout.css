@@ -74,3 +74,20 @@
   display: grid;
   gap: var(--space-4);
 }
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-5);
+}
+
+.contact-details,
+.contact-form {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.form-field {
+  display: grid;
+  gap: var(--space-2);
+}

@@ -64,13 +64,49 @@
     }
   }
 
+  function initContactForm() {
+    const form = document.querySelector("[data-contact-form]");
+    if (!form || !window.validateContactForm) {
+      return;
+    }
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const formData = new FormData(form);
+      const values = Object.fromEntries(formData.entries());
+      const errors = window.validateContactForm(values);
+      const messageTarget = form.querySelector("[data-form-message]");
+
+      if (Object.keys(errors).length > 0) {
+        if (messageTarget) {
+          messageTarget.textContent = Object.values(errors).join(" ");
+          messageTarget.classList.remove("is-success");
+          messageTarget.classList.add("is-error");
+        }
+        return;
+      }
+
+      if (messageTarget) {
+        messageTarget.textContent =
+          "Thank you for your message. I will get back to you soon.";
+        messageTarget.classList.remove("is-error");
+        messageTarget.classList.add("is-success");
+      }
+
+      form.reset();
+    });
+  }
+
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", function () {
       renderSections();
       renderBlogPage();
+      initContactForm();
     });
   } else {
     renderSections();
     renderBlogPage();
+    initContactForm();
   }
 })();
