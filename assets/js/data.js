@@ -2,10 +2,13 @@ window.PORTFOLIO_DATA = {
   profile: {
     name: "Christian Guhirwa",
     title: "Software Engineer",
-    tagline: "Crafting practical and user-focused digital solutions.",
+    tagline: "Crafting practical and user focused digital solutions.",
+    image: "assets/images/Profile.jpeg",
     address: "93 KK 495 St",
     phone: "+250 790 714 202",
     email: "guhirwachristian004@gmail.com",
+    cvDownloadUrl:
+      "https://drive.google.com/file/d/1zGTNgs_VSfhZHFKuV4lgHyn-uFNIACsV/view?usp=sharing",
   },
   contact: {
     socialLinks: [

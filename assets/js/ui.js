@@ -11,13 +11,26 @@ window.toFilterSlug = function toFilterSlug(value) {
 
 window.renderHero = function renderHero(container) {
   const data = window.PORTFOLIO_DATA;
+  const heroImage = data.profile.image
+    ? `<img class="profile-image" src="${data.profile.image}" alt="${data.profile.name} profile photo" />`
+    : `<div class="profile-image-placeholder" aria-label="Profile image placeholder">
+        <span>Profile Image Space</span>
+      </div>`;
+
   container.classList.add("hero-section");
   container.innerHTML = `
-    <div class="container">
-      <h1>${data.profile.name}</h1>
-      <p>${data.profile.tagline}</p>
-      <p class="hero-meta">Address: ${data.profile.address} | Phone: ${data.profile.phone}</p>
-      <a class="btn" href="mailto:${data.profile.email}">Contact Me</a>
+    <div class="container hero-layout">
+      ${heroImage}
+      <div class="hero-copy">
+        <p class="hero-kicker">${data.profile.title}</p>
+        <h1>${data.profile.name}</h1>
+        <p>${data.profile.tagline}</p>
+        <p class="hero-meta">Address: ${data.profile.address} | Phone: ${data.profile.phone}</p>
+        <div class="hero-actions">
+          <a class="btn" href="mailto:${data.profile.email}">Contact Me</a>
+          <a class="btn btn-secondary" href="${data.profile.cvDownloadUrl}" download>Download CV</a>
+        </div>
+      </div>
     </div>
   `;
 };
@@ -79,7 +92,11 @@ window.renderContact = function renderContact(container) {
           <div class="social-links">
             ${data.contact.socialLinks
               .map(function (link) {
-                return `<a class="social-link" href="${link.url}">${link.label}</a>`;
+                const variant = window.toFilterSlug(link.label);
+                const url = link.url.startsWith("http")
+                  ? link.url
+                  : `https://${link.url}`;
+                return `<a class="social-link social-link--${variant}" href="${url}" target="_blank" rel="noopener noreferrer">${link.label}</a>`;
               })
               .join("")}
           </div>
@@ -227,7 +244,6 @@ window.renderProjects = function renderProjects(container, activeFilter) {
             </ul>
           </div>
           <div class="project-card__actions">
-            <a class="btn" href="${project.liveLink}">Live Site</a>
             <a class="btn btn-secondary" href="${project.githubLink}">GitHub</a>
           </div>
         </article>
